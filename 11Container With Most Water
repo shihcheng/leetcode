@@ -1,0 +1,21 @@
+class Solution(object):
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        
+        idxs = 0
+        idxe = len(height)-1
+        Maxcontainer = 0
+        
+        while idxe > idxs:
+            
+            if Maxcontainer < (idxe-idxs)*min(height[idxe],height[idxs]):
+                Maxcontainer = (idxe-idxs)*min(height[idxe],height[idxs])
+            if height[idxe] > height[idxs]:
+                idxs += 1
+            else:
+                idxe -= 1
+            
+        return Maxcontainer
