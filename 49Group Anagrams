@@ -1,0 +1,20 @@
+class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        res = []
+        dict = {}
+        strs.sort()
+        #while strs:
+            #word = strs.pop(0)
+        for word in strs:
+            Keycmp = ''.join(sorted(word))
+            if Keycmp in dict:
+                dict[Keycmp].append(word)
+            else:
+                dict[Keycmp] = [word]
+        for key,ele in dict.iteritems():
+            res.append(ele)
+        return res 
