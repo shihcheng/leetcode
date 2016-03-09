@@ -1,0 +1,25 @@
+class Solution(object):
+    def minPathSum(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        m = len(grid)
+        n = len(grid[0])
+        table = []
+                
+        for i in range(m):
+            table.append([])
+            for j in range(n):
+                if i == 0 and j == 0:
+                    table[i].append(grid[i][j])
+                elif j == 0:
+                    table[i].append(grid[i][j]+table[i-1][j])
+                elif i == 0:
+                    table[i].append(grid[i][j]+table[i][j-1])
+                else:
+                    if table[i-1][j] < table[i][j-1]:
+                        table[i].append(table[i-1][j]+grid[i][j])
+                    else:
+                        table[i].append(table[i][j-1]+grid[i][j])
+        return table[m-1][n-1]
