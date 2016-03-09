@@ -1,0 +1,26 @@
+class Solution(object):
+    def mySqrt(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        if x == 0:
+            return 0
+        if x < 4:
+            return 1
+        upper = x/2+1
+        lower = 1
+        
+        mid = (upper+lower)/2
+        
+        while upper >lower:
+            if mid**2 > x:
+                upper = mid
+            elif mid**2 < x: 
+                lower = mid
+                if x<(mid+1)**2:
+                    return lower
+            else:
+                return mid
+            mid = (lower + upper)/2
+        return lower
