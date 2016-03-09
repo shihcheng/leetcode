@@ -1,0 +1,27 @@
+class Solution(object):
+    def setZeroes(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: void Do not return anything, modify matrix in-place instead.
+        """
+        
+        
+        
+        Mrow = []
+        Mcolumn = []
+        row = len(matrix)
+        column = len(matrix[0])
+        for i in range(row):
+            for j in range(column):
+                if matrix[i][j]==0:
+                    if j not in Mcolumn:
+                        Mcolumn.append(j)
+                    if i not in Mrow:
+                        Mrow.append(i)
+                        
+        for i in Mrow:
+            for j in range(column):
+                matrix[i][j] = 0
+        for j in Mcolumn:
+            for i in range(row):
+                matrix[i][j] = 0
