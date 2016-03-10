@@ -1,0 +1,30 @@
+class Solution(object):
+    def combine(self, n, k):
+        res = []
+        if k == 0:
+            return res
+
+        nums = [x for x in range(1,n+1)]
+        stack = []
+        for ele in nums:
+            stack.append([ele])
+        if k==1:
+            return stack
+
+        while stack:
+            temp = []
+            temp = stack.pop()
+            start = temp[-1]
+            end = (k-len(temp))+temp[-1]+1
+            if start < n and end <= n+1:
+                for ele in nums[start:]:
+                    if ele not in temp:
+                        temp.append(ele)
+                        if len(temp) < k:
+                            stack.append(list(temp))
+                        else:
+                            res.append(list(temp))
+                        temp.pop()
+        return res
+
+                        
