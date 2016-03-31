@@ -1,0 +1,27 @@
+class Solution(object):
+    def minimumTotal(self, triangle):
+        """
+        :type triangle: List[List[int]]
+        :rtype: int
+        """
+        if len(triangle) == 0:
+            return 0
+        n = len(triangle)
+        count = 0
+        res=[]
+        res.append(triangle[0][0])
+        if n == 1:
+            return min(res)
+            
+        for i in range(1,n):
+            m = len(res)
+            pre = triangle[i][0]+res[0]
+            for j in range(m):
+                if triangle[i][j]+res[j]>pre:
+                    temp = pre
+                else:
+                    temp = triangle[i][j]+res[j]
+                pre = triangle[i][j+1] + res[j]
+                res[j] = temp
+            res.append(pre)
+        return min(res)
