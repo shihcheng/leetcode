@@ -1,0 +1,24 @@
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        n = len(prices)
+        if n == 0:
+            return 0
+        sellidx = 0
+        buyidx = 0
+        pr = prices[0]
+        ans = 0
+        for i in range(1,n):
+            if prices[i]>pr:
+                sellidx = i
+            else:
+                if sellidx > buyidx:
+                    ans += prices[sellidx] - prices[buyidx]
+                buyidx = i
+            pr = prices[i]
+        if sellidx > buyidx:
+            ans += prices[sellidx] - prices[buyidx]
+        return ans  
