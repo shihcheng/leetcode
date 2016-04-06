@@ -1,0 +1,47 @@
+class Solution(object):
+    def compareVersion(self, version1, version2):
+        """
+        :type version1: str
+        :type version2: str
+        :rtype: int
+        """
+        if version1.find("."):
+            A1 = version1.split(".")
+        else:
+            A1 = [version1]
+            
+        if version2.find("."):
+            A2 = version2.split(".")
+        else:
+            A2 = [version2]
+        
+        while A1 and A2:
+            num1 = A1.pop(0)
+            num2 = A2.pop(0)
+            if int(num1) != int(num2):
+                return self.compare(num1,num2)
+        
+        
+        while A1 and int(A1[0]) == 0:
+            A1.pop(0)
+        while A2 and int(A2[0]) == 0:
+            A2.pop(0)
+   
+        if A1:
+            return 1
+        if A2: 
+            return -1
+            
+        return 0
+
+    def compare(self,A,B):
+        if int(A) > int(B):
+            return 1
+        elif int(A) < int(B):
+            return -1
+        else:
+            return 0
+    
+                
+            
+            
