@@ -1,0 +1,22 @@
+class Solution(object):
+    def isIsomorphic(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        
+        n = len(s)
+        if n == 0:
+            return True
+        dict = {}
+        for idx in range(n):
+            if s[idx] in dict:
+                if t[idx]!=dict[s[idx]]:
+                    return False
+            else:
+                if t[idx] in t[:idx]:
+                    return False
+                dict[s[idx]] = t[idx]
+        return True
+            
