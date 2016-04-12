@@ -1,0 +1,30 @@
+class Solution(object):
+    def getHint(self, secret, guess):
+        """
+        :type secret: str
+        :type guess: str
+        :rtype: str
+        """
+        
+        n = len(guess)
+        A = 0
+        B = 0
+        dict = {}
+        unmatch = []
+        for idx,ele in enumerate(guess):
+            if ele == secret[idx]:
+                A += 1
+            else:
+                unmatch.append(ele)
+                if secret[idx] in dict:
+                    dict[secret[idx]] += 1
+                else:
+                    dict[secret[idx]] = 1
+
+        for ele in unmatch:
+            if ele in dict and dict[ele] > 0:
+                dict[ele] -= 1
+                B += 1
+        
+        res = str(A)+"A"+str(B)+"B"
+        return res        
