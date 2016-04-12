@@ -1,0 +1,15 @@
+class Solution(object):
+    def reverseBits(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n == 0:
+            return 0
+        int2bin = bin(n)
+        int2bin = int2bin[2:]
+        int2bin = int2bin[::-1]
+        for i in range(32-len(int2bin)):
+            int2bin += "0"
+        res = int(int2bin,2)
+        return res
