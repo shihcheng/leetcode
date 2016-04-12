@@ -1,0 +1,47 @@
+class Solution(object):
+    def computeArea(self, A, B, C, D, E, F, G, H):
+        """
+        :type A: int
+        :type B: int
+        :type C: int
+        :type D: int
+        :type E: int
+        :type F: int
+        :type G: int
+        :type H: int
+        :rtype: int
+        """
+
+        ##width
+        #AC VS EG# width overlap
+        area = (C-A)*(D-B) + (G-E)*(H-F)
+        width = []
+        if A >= E and A <= G:
+            ##A is in overlapping region 
+            print A
+            width.append(A)
+        if C >= E and C <= G:
+            width.append(C)
+        if E >= A and E <= C:
+            width.append(E)
+        if G >= A and G <= C:
+            width.append(G)
+            
+        ##height
+        #BD VS FH# height overlap
+        height = []
+        if B >= F and B <= H:
+            ##B is in overlapping region 
+            height.append(B)
+        if D >= F and D <= H:
+            height.append(D)
+        if F >= B and F <= D:
+            height.append(F)
+        if H >= B and H <= D:
+            height.append(H)
+        
+        if len(width)<2 or len(height) < 2:
+            return area
+        else:
+            return area-(max(width)-min(width))*(max(height)-min(height))
+            
